@@ -3,8 +3,12 @@ const router = express.Router();
 
 const authRoutes = require("./auth");
 const accountRoutes = require("./account");
+const departmentRoutes = require("./department");
+const courseRoutes = require("./course");
 
 router.use("/", authRoutes);
 router.use("/", accountRoutes);
+router.use("/", departmentRoutes);
+router.use("/", courseRoutes);
 
 module.exports = router;
