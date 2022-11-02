@@ -27,8 +27,16 @@ router.post(
       .custom((departmentId) => mongoose.isValidObjectId(departmentId))
       .withMessage("Invalid Department Id"),
     check("passingYear").notEmpty().withMessage("Passing year is required"),
-    check("phoneNo").notEmpty().withMessage("Phone No is required"),
-    check("altPhoneNo").notEmpty().withMessage("Alt Phone No is required"),
+    check("phoneNo")
+      .notEmpty()
+      .withMessage("Phone No is required")
+      .custom((phoneNo) => phoneNo.toString().length == 10)
+      .withMessage("Phone No should be of 10 digits"),
+    check("altPhoneNo")
+      .notEmpty()
+      .withMessage("Alt Phone No is required")
+      .custom((phoneNo) => phoneNo.toString().length == 10)
+      .withMessage("Alt Phone No should be of 10 digits"),
   ],
   handleValidationError,
   studentRegister
