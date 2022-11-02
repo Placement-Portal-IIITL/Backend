@@ -6,6 +6,10 @@ const addressSchema = mongoose.Schema(
       type: mongoose.Types.ObjectId,
       required: true,
     },
+    label: {
+      type: String,
+      trim: true,
+    },
     address: {
       type: String,
       required: true,
@@ -19,7 +23,7 @@ const addressSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    pincode: {
+    zipCode: {
       type: Number,
       required: true,
     },

@@ -1,4 +1,5 @@
 const Users = require("../models/users");
+const Students = require("../models/students");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
 const sendEmailOtp = require("../email/sendEmailOtp");
@@ -18,7 +19,7 @@ exports.signUp = async (req, res) => {
     //       },
     //     ],
     //   });
-    // } 
+    // }
     if (existingUser && existingUser.emailVerified) {
       return res.status(400).json({
         errors: [
@@ -155,4 +156,40 @@ exports.isInPlacementTeam = (req, res, next) => {
     }
     next();
   });
+};
+
+exports.isStudent = (req, res, next) => {
+  const query = Users.findOne({ _id: req.auth._id }).select({
+    _id: 0,
+    roles: 1,
+  });
+  query.exec((error, user) => {
+    if (error || !user || !user.roles.includes("STUDENT")) {
+      return res.status(403).json({
+        error: "You are not a student",
+      });
+    }
+    next();
+  });
+};
+
+exports.getStudentAuth = async (req, res, next) => {
+  if (!req.auth?._id) {
+    next();
+  } else {
+    try {
+      const studentProfile = await Students.findOne({
+        userId: req.auth._id,
+      })
+        .select({
+          _id: 1,
+        })
+        .exec();
+      if (studentProfile) req.auth.studentId = studentProfile._id;
+      next();
+    } catch (error) {
+      console.log("Error finding sellerId in getSellerAuth ", error);
+      res.status(500).json({ error: "Some error occurred" });
+    }
+  }
 };
