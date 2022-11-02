@@ -1,8 +1,14 @@
 const Departments = require("../models/departments");
+const Courses = require("../models/courses");
 
 exports.getDepartmentList = async (req, res) => {
   try {
-    const departments = await Departments.find();
+    let findObj = {};
+    if (req.query.courseId) {
+      const departmentList = await Courses.findOne({ _id: req.query.courseId });
+      findObj._id = { $in: departmentList.departments };
+    }
+    const departments = await Departments.find(findObj);
     res.json({ departments });
   } catch (error) {
     console.log("Error occurred in /getDepartmentList", error);
