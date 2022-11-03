@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cgpaGradeSchema = mongoose.Schema(
   {
     studentId: {
-      tupe: mongoose.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       required: true,
     },
     semester1: {
@@ -40,4 +40,4 @@ const cgpaGradeSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("cgpaGrades", cgpaGradeSchema);
+module.exports = mongoose.model("CGPAGrades", cgpaGradeSchema);

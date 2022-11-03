@@ -44,4 +44,4 @@ const courseCreditSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("courseCredits", courseCreditSchema);
+module.exports = mongoose.model("CourseCredits", courseCreditSchema);

@@ -8,14 +8,12 @@ const highSchoolGradeSchema = mongoose.Schema(
     },
     gradeType: {
       type: String,
-      required: true,
     },
     grade: {
       type: Number,
-      required: true,
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("highSchoolGrades", highSchoolGradeSchema);
+module.exports = mongoose.model("HighSchoolGrades", highSchoolGradeSchema);

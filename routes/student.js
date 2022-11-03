@@ -4,9 +4,17 @@ const { check } = require("express-validator");
 const mongoose = require("mongoose");
 
 const { handleValidationError } = require("../functions/validator");
-const { isSignedIn } = require("../controllers/auth");
+const {
+  isSignedIn,
+  isStudent,
+  getStudentAuth,
+} = require("../controllers/auth");
 
-const { studentRegister } = require("../controllers/student");
+const {
+  studentRegister,
+  getStudentProfile,
+  updateStudentProfile,
+} = require("../controllers/student");
 
 router.post(
   "/studentRegister",
@@ -40,6 +48,22 @@ router.post(
   ],
   handleValidationError,
   studentRegister
+);
+
+router.get(
+  "/getStudentProfile",
+  isSignedIn,
+  isStudent,
+  getStudentAuth,
+  getStudentProfile
+);
+
+router.post(
+  "/updateStudentProfile",
+  isSignedIn,
+  isStudent,
+  getStudentAuth,
+  updateStudentProfile
 );
 
 module.exports = router;

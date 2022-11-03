@@ -8,14 +8,12 @@ const intermediateGradeSchema = mongoose.Schema(
     },
     gradeType: {
       type: String,
-      required: true,
     },
     grade: {
       type: Number,
-      required: true,
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("intermediateGrades", intermediateGradeSchema);
+module.exports = mongoose.model("IntermediateGrades", intermediateGradeSchema);
