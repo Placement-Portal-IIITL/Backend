@@ -26,7 +26,7 @@ const companySchema = mongoose.Schema(
     expectedCTC: {
       type: Number,
     },
-    exptectedBase: {
+    expectedBase: {
       type: Number,
     },
     expectedStipend: {
