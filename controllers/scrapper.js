@@ -22,11 +22,11 @@ exports.scrapCompanyProfile = async (req, res) => {
       }
     );
     return res.json({
-      name: data.details.name,
-      natureOfBusiness: data.details.industries[0],
-      website: data.details.urls.company_page,
-      linkedIn: data.details.urls.li_url,
-      logo: data.details.images.logo,
+      name: data.details?.name,
+      natureOfBusiness: data.details?.industries[0],
+      website: data.details?.urls?.company_page,
+      linkedIn: data.details?.urls?.li_url,
+      logo: data.details?.images?.logo,
     });
   } catch (error) {
     console.log("Error occurred in /scrapCompanyProfile", error);
