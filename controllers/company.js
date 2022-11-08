@@ -106,7 +106,7 @@ exports.getCompanyDetails = async (req, res) => {
     }
     res.json(company);
   } catch (error) {
-    console.log("Error occurred in /addCompany", error);
+    console.log("Error occurred in /getCompanyDetails", error);
     res.status(500).json({ error: "Some error occurred" });
   }
 };
@@ -144,7 +144,7 @@ exports.updateCompany = async (req, res) => {
     }
     res.json({ msg: "Company updated successfully" });
   } catch (error) {
-    console.log("Error occurred in /getCompanyList", error);
+    console.log("Error occurred in /updateCompany", error);
     res.status(500).json({ error: "Some error occurred" });
   }
 };
@@ -162,7 +162,7 @@ exports.deleteCompany = async (req, res) => {
     }
     res.json({ msg: "Company deleted successfully" });
   } catch (error) {
-    console.log("Error occurred in /getCompanyList", error);
+    console.log("Error occurred in /deleteCompany", error);
     res.status(500).json({ error: "Some error occurred" });
   }
 };

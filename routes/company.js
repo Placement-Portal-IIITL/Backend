@@ -17,7 +17,7 @@ const {
 router.get("/getCompanyList", isSignedIn, isInPlacementTeam, getCompanyList);
 
 router.get(
-  "/getcompanyDetails",
+  "/getCompanyDetails",
   isSignedIn,
   isInPlacementTeam,
   [
