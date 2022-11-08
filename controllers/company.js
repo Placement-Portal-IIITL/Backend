@@ -98,6 +98,19 @@ exports.getCompanyList = async (req, res) => {
   }
 };
 
+exports.getCompanyDetails = async (req, res) => {
+  try {
+    const company = await Companies.findOne({ _id: req.query.companyId });
+    if (!company) {
+      return res.status(404).json({ error: "Company does not exist" });
+    }
+    res.json(company);
+  } catch (error) {
+    console.log("Error occurred in /addCompany", error);
+    res.status(500).json({ error: "Some error occurred" });
+  }
+};
+
 exports.addCompany = async (req, res) => {
   try {
     const company = await Companies.findOne({ name: req.body.name });

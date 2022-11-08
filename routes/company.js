@@ -11,9 +11,25 @@ const {
   addCompany,
   updateCompany,
   deleteCompany,
+  getCompanyDetails,
 } = require("../controllers/company.js");
 
 router.get("/getCompanyList", isSignedIn, isInPlacementTeam, getCompanyList);
+
+router.get(
+  "/getcompanyDetails",
+  isSignedIn,
+  isInPlacementTeam,
+  [
+    check("companyId")
+      .notEmpty()
+      .withMessage("Company Id is required")
+      .custom((companyId) => mongoose.isValidObjectId(companyId))
+      .withMessage("Invalid Company Id"),
+  ],
+  handleValidationError,
+  getCompanyDetails
+);
 
 router.post(
   "/addCompany",
