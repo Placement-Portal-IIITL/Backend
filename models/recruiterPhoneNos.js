@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const phoneNumberSchema = mongoose.Schema(
+const phoneNoSchema = mongoose.Schema(
   {
     recruiterId: {
       type: mongoose.Types.ObjectId,
@@ -27,4 +27,4 @@ const phoneNumberSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("RecruiterPhoneNumbers", phoneNumberSchema);
+module.exports = mongoose.model("RecruiterPhoneNos", phoneNoSchema);
