@@ -12,9 +12,12 @@ const {
   updateCompany,
   deleteCompany,
   getCompanyDetails,
+  searchCompany,
 } = require("../controllers/company.js");
 
 router.get("/getCompanyList", isSignedIn, isInPlacementTeam, getCompanyList);
+
+router.get("/searchCompany", isSignedIn, isInPlacementTeam, searchCompany);
 
 router.get(
   "/getCompanyDetails",

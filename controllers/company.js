@@ -98,6 +98,30 @@ exports.getCompanyList = async (req, res) => {
   }
 };
 
+exports.searchCompany = async (req, res) => {
+  try {
+    if (!req.query.searchQuery) {
+      const searchResults = await Companies.find().select({ _id: 1, name: 1 });
+      return res.json({ searchResults });
+    }
+    const searchResults = await Companies.aggregate([
+      {
+        $search: {
+          index: "Company",
+          text: { query: req.query.searchQuery, path: { wildcard: "*" } },
+        },
+      },
+      {
+        $project: { _id: 1, name: 1 },
+      },
+    ]);
+    return res.json({ searchResults });
+  } catch (error) {
+    console.log("Error occurred in /searchCompany", error);
+    res.status(500).json({ error: "Some error occurred" });
+  }
+};
+
 exports.getCompanyDetails = async (req, res) => {
   try {
     const company = await Companies.findOne({ _id: req.query.companyId });
