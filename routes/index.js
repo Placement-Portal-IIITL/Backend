@@ -9,6 +9,7 @@ const studentRoutes = require("./student");
 const companyRoutes = require("./company");
 const recruiterRoutes = require("./recruiter");
 const scrapperRouters = require("./scrapper");
+const recruiterEmailRoutes = require("./recruiterEmail");
 
 router.use("/", authRoutes);
 router.use("/", accountRoutes);
@@ -18,5 +19,6 @@ router.use("/", studentRoutes);
 router.use("/", companyRoutes);
 router.use("/", recruiterRoutes);
 router.use("/", scrapperRouters);
+router.use("/", recruiterEmailRoutes);
 
 module.exports = router;

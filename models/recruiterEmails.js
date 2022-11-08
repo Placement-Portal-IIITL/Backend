@@ -4,6 +4,7 @@ const emailSchema = mongoose.Schema(
   {
     recruiterId: {
       type: mongoose.Types.ObjectId,
+      required: true,
     },
     email: {
       type: String,
@@ -23,4 +24,4 @@ const emailSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Emails", emailSchema);
+module.exports = mongoose.model("RecruiterEmails", emailSchema);
