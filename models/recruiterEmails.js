@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const phoneNumberSchema = mongoose.Schema(
+const emailSchema = mongoose.Schema(
   {
-    countryCode: {
-      type: Number,
+    recruiterId: {
+      type: mongoose.Types.ObjectId,
     },
-    phoneNo: {
-      type: Number,
+    email: {
+      type: String,
     },
     isPrimary: {
       type: Boolean,
@@ -23,4 +23,4 @@ const phoneNumberSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("PhoneNumbers", phoneNumberSchema);
+module.exports = mongoose.model("Emails", emailSchema);

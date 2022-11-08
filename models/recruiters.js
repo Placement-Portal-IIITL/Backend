@@ -23,14 +23,6 @@ const recruiterSchema = mongoose.Schema(
     photo: {
       type: String,
     },
-    emails: {
-      type: Array,
-      default: [],
-    },
-    phoneNumbers: {
-      type: Array,
-      default: [],
-    },
     remarks: {
       type: String,
     },
