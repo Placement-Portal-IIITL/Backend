@@ -72,6 +72,16 @@ exports.getRecruiterDetails = async (req, res) => {
 
 exports.addRecruiter = async (req, res) => {
   try {
+    if (req.body.linkedIn) {
+      const recruiter = await Recruiters.findOne({
+        linkedIn: req.body.linkedIn,
+      });
+      if (recruiter) {
+        return res
+          .status(400)
+          .json({ error: "Recruiter with same linkedIn already exists" });
+      }
+    }
     const newRecruiter = new Recruiters(req.body);
     await newRecruiter.save();
     res.json(newRecruiter);
