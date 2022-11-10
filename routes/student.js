@@ -8,12 +8,14 @@ const {
   isSignedIn,
   isStudent,
   getStudentAuth,
+  isInPlacementTeam,
 } = require("../controllers/auth");
 
 const {
   studentRegister,
   getStudentProfile,
   updateStudentProfile,
+  getStudentList,
 } = require("../controllers/student");
 
 router.post(
@@ -64,6 +66,22 @@ router.post(
   isStudent,
   getStudentAuth,
   updateStudentProfile
+);
+
+router.get(
+  "/getStudentList",
+  isSignedIn,
+  isInPlacementTeam,
+  [
+    check("courseId")
+      .notEmpty()
+      .withMessage("Course Id is required")
+      .custom((courseId) => mongoose.isValidObjectId(courseId))
+      .withMessage("Invalid Course Id"),
+    check("passingYear").notEmpty().withMessage("Passing year is required"),
+  ],
+  handleValidationError,
+  getStudentList
 );
 
 module.exports = router;

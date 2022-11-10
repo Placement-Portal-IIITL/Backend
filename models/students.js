@@ -63,6 +63,7 @@ const studentSchema = new mongoose.Schema(
     },
     maxCTCOffered: {
       type: Number,
+      default: 0,
     },
     photo: {
       type: String,
