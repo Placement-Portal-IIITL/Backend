@@ -11,6 +11,7 @@ const {
   addCourse,
   deleteCourse,
   addDepartmentInCourse,
+  updateCourse,
 } = require("../controllers/course.js");
 
 router.get("/getCourseList", getCourseList);
@@ -22,6 +23,21 @@ router.post(
   [check("courseName").notEmpty().withMessage("Course name is required")],
   handleValidationError,
   addCourse
+);
+
+router.post(
+  "/updateCourse",
+  isSignedIn,
+  isInPlacementTeam,
+  [
+    check("courseId")
+      .notEmpty()
+      .withMessage("Course Id is required")
+      .custom((courseId) => mongoose.isValidObjectId(courseId))
+      .withMessage("Invalid Course Id"),
+  ],
+  handleValidationError,
+  updateCourse
 );
 
 router.post(

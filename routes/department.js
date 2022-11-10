@@ -9,6 +9,7 @@ const { isInPlacementTeam, isSignedIn } = require("../controllers/auth");
 const {
   getDepartmentList,
   addDepartment,
+  updateDepartment,
   deleteDepartment,
 } = require("../controllers/department.js");
 
@@ -27,12 +28,26 @@ router.post(
   addDepartment
 );
 
+router.post(
+  "/updateDepartment",
+  isSignedIn,
+  isInPlacementTeam,
+  [
+    check("departmentId")
+      .notEmpty()
+      .withMessage("Department Id is required")
+      .custom((departmentId) => mongoose.isValidObjectId(departmentId))
+      .withMessage("Invalid DepartmentId"),
+  ],
+  handleValidationError,
+  updateDepartment
+);
+
 router.delete(
   "/deleteDepartment",
   isSignedIn,
   isInPlacementTeam,
   [
-    check("departmentId").notEmpty().withMessage("Department Id is required"),
     check("departmentId")
       .notEmpty()
       .withMessage("Department Id is required")

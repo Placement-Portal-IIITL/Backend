@@ -32,6 +32,26 @@ exports.addCourse = async (req, res) => {
   }
 };
 
+exports.updateCourse = async (req, res) => {
+  try {
+    const course = await Courses.findOne({ _id: req.body.courseId });
+    if (!course) {
+      return res.status(404).json({ error: "Course does not exists" });
+    }
+    const updatedCourse = await Courses.updateOne(
+      { _id: req.body.courseId },
+      req.body
+    );
+    if (updatedCourse.modifiedCount == 0) {
+      return res.status(500).json({ error: "Failed to update course" });
+    }
+    res.json({ msg: "Course updated succesfully" });
+  } catch (error) {
+    console.log("Error occurred in /updateCourse", error);
+    res.status(500).json({ error: "Some error occurred" });
+  }
+};
+
 exports.addDepartmentInCourse = async (req, res) => {
   try {
     const course = await Courses.findOne({
