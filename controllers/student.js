@@ -256,7 +256,10 @@ exports.getStudentList = async (req, res) => {
 
         let courseCreditSum = 0,
           aggregateCGPA = 0;
+        student.aggregateCGPASemester = 0;
         for (let semester = 1; semester <= aggregateCGPASemester; semester++) {
+          if (!cgpaGrades[`semester${semester}`]) break;
+          student.aggregateCGPASemester++;
           courseCreditSum += courseCredits[`semester${semester}`] || 0;
           aggregateCGPA +=
             (courseCredits[`semester${semester}`] || 0) *
