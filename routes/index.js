@@ -11,6 +11,7 @@ const recruiterRoutes = require("./recruiter");
 const scrapperRouters = require("./scrapper");
 const recruiterEmailRoutes = require("./recruiterEmail");
 const recruiterPhoneNoRoutes = require("./recruiterPhoneNo");
+const queryRoutes = require("./query");
 
 router.use("/", authRoutes);
 router.use("/", accountRoutes);
@@ -22,5 +23,6 @@ router.use("/", recruiterRoutes);
 router.use("/", scrapperRouters);
 router.use("/", recruiterEmailRoutes);
 router.use("/", recruiterPhoneNoRoutes);
+router.use("/", queryRoutes);
 
 module.exports = router;
