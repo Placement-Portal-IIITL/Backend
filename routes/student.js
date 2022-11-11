@@ -57,6 +57,13 @@ router.get(
   isSignedIn,
   isStudent,
   getStudentAuth,
+  [
+    check("studentId")
+      .optional()
+      .custom((studentId) => mongoose.isValidObjectId(studentId))
+      .withMessage("Invalid Student Id"),
+  ],
+  handleValidationError,
   getStudentProfile
 );
 
@@ -65,6 +72,13 @@ router.post(
   isSignedIn,
   isStudent,
   getStudentAuth,
+  [
+    check("studentId")
+      .optional()
+      .custom((studentId) => mongoose.isValidObjectId(studentId))
+      .withMessage("Invalid Student Id"),
+  ],
+  handleValidationError,
   updateStudentProfile
 );
 

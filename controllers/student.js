@@ -53,7 +53,7 @@ exports.studentRegister = async (req, res) => {
 
 exports.getStudentProfile = async (req, res) => {
   try {
-    const studentId = req.auth.studentId;
+    const studentId = req.query.studentId || req.auth.studentId;
     let student = (await Students.findOne({ _id: studentId }))?._doc;
     const highSchoolGrades = await HighSchoolGrades.findOne({
       studentId,
@@ -90,7 +90,7 @@ exports.getStudentProfile = async (req, res) => {
 
 exports.updateStudentProfile = async (req, res) => {
   try {
-    const studentId = req.auth.studentId;
+    const studentId = req.body.studentId || req.auth.studentId;
     await Students.updateOne({ _id: studentId }, req.body);
     if (req.body.highSchoolGrades) {
       const highSchoolGrades = await HighSchoolGrades.findOne({ studentId });
