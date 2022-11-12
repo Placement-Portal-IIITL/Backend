@@ -79,7 +79,7 @@ exports.addQuery = async (req, res) => {
 
 exports.markQueryAsResolved = async (req, res) => {
   try {
-    const query = await Queries.findOne({ _id: req.query.queryId });
+    const query = await Queries.findOne({ _id: req.body.queryId });
     if (!query) {
       return res.status(404).json({ error: "Query not found" });
     }
