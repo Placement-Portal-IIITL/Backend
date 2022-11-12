@@ -84,8 +84,8 @@ exports.markQueryAsResolved = async (req, res) => {
       return res.status(404).json({ error: "Query not found" });
     }
     const updatedQuery = await Queries.updateOne(
-      { _id: req.query.queryId },
-      { isResolved: true, response: req.query.response }
+      { _id: req.body.queryId },
+      { isResolved: true, response: req.body.response }
     );
     if (updatedQuery.modifiedCount == 0) {
       return res.status(500).json({ error: "Failed to update query" });
