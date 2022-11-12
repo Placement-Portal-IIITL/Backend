@@ -8,6 +8,7 @@ const {
   isSignedIn,
   isStudent,
   getStudentAuth,
+  isInPlacementTeam,
 } = require("../controllers/auth");
 
 const {
@@ -16,11 +17,14 @@ const {
   addQuery,
   markQueryAsResolved,
   deleteQuery,
+  getAdminQueryList,
 } = require("../controllers/query.js");
 
 router.get(
   "/getQueryList",
   isSignedIn,
+  isStudent,
+  getStudentAuth,
   [
     check("studentId")
       .optional()
@@ -29,6 +33,13 @@ router.get(
   ],
   handleValidationError,
   getQueryList
+);
+
+router.get(
+  "/getAdminQueryList",
+  isSignedIn,
+  isInPlacementTeam,
+  getAdminQueryList
 );
 
 router.get(
@@ -58,6 +69,7 @@ router.post(
 router.post(
   "/markQueryAsResolved",
   isSignedIn,
+  isInPlacementTeam,
   [
     check("queryId")
       .notEmpty()
