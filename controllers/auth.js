@@ -10,16 +10,16 @@ exports.signUp = async (req, res) => {
   try {
     const existingUser = await Users.findOne({ email: req.body.email });
     const domain = req.body.email.split("@")[1];
-    // if (domain != "iiitl.ac.in") {
-    //   return res.status(400).json({
-    //     errors: [
-    //       {
-    //         error: "Only IIITL domain accepted",
-    //         param: "email",
-    //       },
-    //     ],
-    //   });
-    // }
+    if (domain != "iiitl.ac.in") {
+      return res.status(400).json({
+        errors: [
+          {
+            error: "Only IIITL domain accepted",
+            param: "email",
+          },
+        ],
+      });
+    }
     if (existingUser && existingUser.emailVerified) {
       return res.status(400).json({
         errors: [
