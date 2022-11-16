@@ -4,7 +4,11 @@ const { check } = require("express-validator");
 const mongoose = require("mongoose");
 
 const { handleValidationError } = require("../functions/validator");
-const { isInPlacementTeam, isSignedIn } = require("../controllers/auth");
+const {
+  isInPlacementTeam,
+  isSignedIn,
+  getStudentAuth,
+} = require("../controllers/auth");
 
 const {
   getTeamMemberList,
@@ -19,6 +23,7 @@ router.get("/getTeamMemberList", isSignedIn, getTeamMemberList);
 router.get(
   "/getTeamMemberDetails",
   isSignedIn,
+  getStudentAuth,
   [
     check("teamMemberId")
       .optional()

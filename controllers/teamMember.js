@@ -34,9 +34,7 @@ exports.getTeamMemberDetails = async (req, res) => {
     } else if (req.query.studentId) {
       findObj.studentId = req.query.studentId;
     } else {
-      return res
-        .status(400)
-        .json({ error: "studentId or teamMemberId is required" });
+      findObj.studentId = req.auth.studentId;
     }
     const teamMember = await TeamMembers.findOne(findObj);
     if (!teamMember) {

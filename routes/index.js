@@ -28,6 +28,7 @@ router.use("/", recruiterEmailRoutes);
 router.use("/", recruiterPhoneNoRoutes);
 router.use("/", queryRoutes);
 router.use("/", announcementRoutes);
+router.use("/", teamMemberRoutes);
 router.use("/", proxyRoutes);
 
 module.exports = router;
