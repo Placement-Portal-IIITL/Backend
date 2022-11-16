@@ -14,6 +14,7 @@ const recruiterPhoneNoRoutes = require("./recruiterPhoneNo");
 const queryRoutes = require("./query");
 const announcementRoutes = require("./announcement");
 const teamMemberRoutes = require("./teamMember");
+const proxyRoutes = require("./proxy");
 
 router.use("/", authRoutes);
 router.use("/", accountRoutes);
@@ -27,6 +28,6 @@ router.use("/", recruiterEmailRoutes);
 router.use("/", recruiterPhoneNoRoutes);
 router.use("/", queryRoutes);
 router.use("/", announcementRoutes);
-router.use("/", teamMemberRoutes);
+router.use("/", proxyRoutes);
 
 module.exports = router;
