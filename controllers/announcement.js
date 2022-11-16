@@ -44,8 +44,8 @@ exports.getAnnouncements = async (req, res) => {
     });
 
     let findObj = {
-      courseId: { $in: [studentProfile.courseId] },
-      year: studentProfile.passingYear,
+      courseId: { $in: [String(studentProfile.courseId)] },
+      year: Number(studentProfile.passingYear),
     };
     const announcementCount = await Announcements.countDocuments(findObj);
     const announcements = await Announcements.find(findObj)
