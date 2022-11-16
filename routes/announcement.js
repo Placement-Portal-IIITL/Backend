@@ -17,6 +17,7 @@ const {
   getAnnouncements,
   updateAnnouncement,
   deleteAnnouncement,
+  getAdminAnnouncements,
 } = require("../controllers/announcement");
 
 router.post(
@@ -49,7 +50,20 @@ router.get(
   getAnnouncementDetails
 );
 
-router.get("/getAnnouncements", isSignedIn, isStudent, getAnnouncements);
+router.get(
+  "/getAnnouncements",
+  isSignedIn,
+  isStudent,
+  getStudentAuth,
+  getAnnouncements
+);
+
+router.get(
+  "/getAdminAnnouncements",
+  isSignedIn,
+  isInPlacementTeam,
+  getAdminAnnouncements
+);
 
 router.post(
   "/updateAnnouncement",
